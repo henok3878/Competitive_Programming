@@ -24,6 +24,11 @@ public class ConvertBinaryNumber {
     public static void main(String[] args){
 
         ConvertBinaryNumber convertBinaryNumber = new ConvertBinaryNumber();
+        ListNode head = new ListNode(1);
+        head.next = new ListNode(0);
+        head.next.next = new ListNode(1);
+        int decimalValue = convertBinaryNumber.getDecimalValue(head);
+        System.out.println("Decimal value: " + decimalValue);
 
     }
 
