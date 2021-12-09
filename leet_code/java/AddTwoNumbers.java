@@ -36,6 +36,8 @@ public class AddTwoNumbers {
 
     public static void main(String[] args){
 
+        System.out.println("Ceil 14.6 " + Math.ceil(73/5));
+
         ListNode l1 = new ListNode(9);
         l1.next = new ListNode(9);
         l1.next.next = new ListNode(9);
