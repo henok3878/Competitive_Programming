@@ -10,6 +10,13 @@ public class Utility {
         System.out.println();
     }
 
+    public static void printArrayOfString(String[] arr){
+        for(String elem : arr){
+            System.out.print(elem+", ");
+        }
+        System.out.println();
+    }
+
     public static String createStringFromArrayOfString(String[] arrOfStrings){
         StringBuffer sb = new StringBuffer();
         for(int i = 0; i < arrOfStrings.length; i++) {
