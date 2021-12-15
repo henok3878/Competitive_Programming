@@ -18,7 +18,8 @@ public class ArrayWithElementsNotEqualToAverageOfNeighbors {
 
     public static void main(String[] args){
         ArrayWithElementsNotEqualToAverageOfNeighbors arrayWithElementsNotEqualToAverageOfNeighbors = new ArrayWithElementsNotEqualToAverageOfNeighbors();
-        int[] nums = {1,2,3,4,5};
+        //int[] nums = {1,2,3,4,5};
+        int[] nums = {6,2,0,9,7};
         int[] ans = arrayWithElementsNotEqualToAverageOfNeighbors.rearrangeArray(nums);
         System.out.println("Result: ");
         Utility.printArray(ans);
