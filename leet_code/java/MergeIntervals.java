@@ -1,85 +1,31 @@
 package leet_code.java;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import leet_code.java.util.Utility;
 
 public class MergeIntervals {
-
-
     public int[][] merge(int[][] intervals) {
-        quickSort(intervals, 0, intervals.length - 1);
-        
-        List<ArrayList<Integer>>  mergedIntervals = new ArrayList<ArrayList<Integer>>();
-        for(int i = 0; i < intervals.length; i++){
-            int[] currentInterval = intervals[i];
-            if(!mergedIntervals.isEmpty()){
-                ArrayList<Integer> lastMergedInterval = mergedIntervals.get(mergedIntervals.size()-1);
-                if(currentInterval[0] <= lastMergedInterval.get(1)){
-                    if(currentInterval[1] > lastMergedInterval.get(1)){
-                       lastMergedInterval.set(1, currentInterval[1]);
-                    }
-                        continue;
-                    
-                }
-            }
-            int st = currentInterval[0];
-            int end = currentInterval[1];
-            ArrayList<Integer> interval = new ArrayList<Integer>();
-            interval.add(st);interval.add(end);
-            mergedIntervals.add(interval);
-           
+        Arrays.sort(intervals,(a,b)->a[0] - b[0]);
+        List<List<Integer>> merged = new ArrayList();
+        merged.add(new ArrayList(Arrays.asList(intervals[0][0],intervals[0][1])));
+        for(int[] interval : intervals){
+            List<Integer> top = merged.get(merged.size() - 1);   
+            if(interval[0] > top.get(1)){
+                merged.add(new ArrayList(Arrays.asList(interval[0],interval[1])));
+            }else if(interval[1] > top.get(1)){
+                top.set(1,interval[1]);
+                merged.set(merged.size() - 1, top);
+            } 
         }
-        int[][] result = new int[mergedIntervals.size()][2];
-        for(int i = 0; i < mergedIntervals.size() ; i++){
-            ArrayList<Integer> interval = mergedIntervals.get(i);
-            int[] inter = {interval.get(0),interval.get(1)};
-            result[i] = inter;
-
+        int[][] ans = new int[merged.size()][2];        
+        for(int i = 0; i < merged.size(); i++){
+            ans[i] = new int[]{merged.get(i).get(0),merged.get(i).get(1)};
         }
-        return result;
+        return ans;
     }
-    static void swap(int[][] arr, int i, int j)
-{
-    int[] temp = arr[i];
-    arr[i] = arr[j];
-    arr[j] = temp;
-}
-  
- int partition(int[][] arr, int low, int high)
-{
-      
-    // pivot
-    int pivot = arr[high][0]; 
-    int i = (low - 1); 
-  
-    for(int j = low; j <= high - 1; j++)
-    {
-    
-        if (arr[j][0] < pivot) 
-        {
-              
-            i++; 
-            swap(arr, i, j);
-        }
-    }
-    swap(arr, i + 1, high);
-    return (i + 1);
-}
-
- void quickSort(int[][] arr, int low, int high)
-{
-    if (low < high) 
-    {
-          
-
-        int pi = partition(arr, low, high);
-
-        quickSort(arr, low, pi - 1);
-        quickSort(arr, pi + 1, high);
-    }
-}
 
 
     public static void main(String[] args){
