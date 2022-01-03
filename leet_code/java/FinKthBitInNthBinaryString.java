@@ -22,7 +22,12 @@ public class FinKthBitInNthBinaryString {
 
 
     public static void main(String[] args){
-        
+        FinKthBitInNthBinaryString finKthBitInNthBinaryString = new FinKthBitInNthBinaryString();
+
+        int n= 4; int k = 11;
+        char res = finKthBitInNthBinaryString.findKthBit(n, k);
+        System.out.println("Ans: " + res);
+
     }
     
 }
