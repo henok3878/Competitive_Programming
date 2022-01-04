@@ -17,4 +17,10 @@ public class PowerOfFour {
         }
         
     }
+
+    public static void main(String[] args){
+        PowerOfFour powerOfFour = new PowerOfFour();
+        int n = 16;
+        System.out.println("is " + n +" power of four: " + powerOfFour.isPowerOfFour(16));
+    }
 }
