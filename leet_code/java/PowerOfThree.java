@@ -15,5 +15,11 @@ public class PowerOfThree {
             return isPowerOfThree(n/3);
         }
     }
+
+    public static void main(String[] args){
+        PowerOfThree powerOfThree = new PowerOfThree();
+        int n = 27;
+        System.out.println("is " + n +" power of three: " + powerOfThree.isPowerOfThree(27));
+    }
     
 }
