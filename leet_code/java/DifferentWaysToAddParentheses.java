@@ -1,14 +1,21 @@
 package leet_code.java;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DifferentWaysToAddParentheses {
     
-    public List<Integer> diffWaysToCompute(String expression) {   
-         
+    Map<String,List<Integer>> cache = new HashMap<String,List<Integer>>();
+    
+    public List<Integer> diffWaysToCompute(String expression) {
+        
         List<Integer> ans = new ArrayList<Integer>();
-        if(expression.length() == 1){
+        if(cache.containsKey(expression)){
+            return cache.get(expression);
+        }
+        else if(expression.length() == 1){
             ans.add(expression.charAt(0) -'0');
             return ans;
         }
@@ -29,7 +36,7 @@ public class DifferentWaysToAddParentheses {
                ans.add(Integer.parseInt(expression));
             }
         }
-        
+        cache.put(expression,ans);
         return ans;   
     }
     
