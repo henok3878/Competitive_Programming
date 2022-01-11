@@ -3,29 +3,24 @@ package leet_code.java;
 public class PalindromeLinkedList {
 
     public boolean isPalindrome(ListNode head) {
-        ListNode temp = head;
-        ListNode reversedHead = new ListNode();
-        ListNode dummy = reversedHead;
-        //creates a copy of the orginal list 
-        while(temp != null){
-            dummy.next = new ListNode(temp.val);
-            dummy = dummy.next;
-            temp = temp.next;
+        ListNode slowPtr = head;
+        ListNode fastPtr = head;
+        while(fastPtr != null && fastPtr.next != null ){
+            fastPtr = fastPtr.next.next;
+            slowPtr = slowPtr.next;
         }
+        // reverse the half 
+        slowPtr = reverse(slowPtr);
         
-        boolean isPalindrome = true;
-        
-        // reverse the copied list 
-        reversedHead = reverse(reversedHead.next);
-        
+        boolean isPalindrome = true;     
         // compares each element between the reversed and the orginal list 
-        while(reversedHead != null){
-            if(head.val != reversedHead.val){
+        while(slowPtr != null){
+            if(head.val != slowPtr.val){
                 isPalindrome = false;
                 break;
             }
             head = head.next;
-            reversedHead = reversedHead.next;
+            slowPtr = slowPtr.next;
         }
         return isPalindrome;
         
