@@ -20,23 +20,28 @@ public class LetterCombinationsOfAPhoneNumber {
         map.put('8',new ArrayList<>(Arrays.asList("t","u","v")));
         map.put('9',new ArrayList<>(Arrays.asList("w","x","y","z")));
         
+        Map<String,List<String>> cache = new HashMap<>();
         
-        return letterCmbinationsHelper(digits,map);        
+        
+        return letterCmbinationsHelper(digits,map, cache);        
     }
     
-    private List<String> letterCmbinationsHelper(String digits, Map<Character,List<String>> map){
+    private List<String> letterCmbinationsHelper(String digits, Map<Character,
+                                                 List<String>> map, Map<String,List<String>> cache){
         List<String> ans = new ArrayList<>();
+        if(cache.containsKey(digits)) return cache.get(digits);
         if(digits.length() == 1){
             ans = map.get(digits.charAt(0));
         }else if(digits.length() > 1){
-            List<String> firstDigits = letterCmbinationsHelper(digits.substring(0,1),map);
-            List<String> restDigits = letterCmbinationsHelper(digits.substring(1),map);
+            List<String> firstDigits = letterCmbinationsHelper(digits.substring(0,1),map,cache);
+            List<String> restDigits = letterCmbinationsHelper(digits.substring(1),map,cache);
             for(String f : firstDigits){
                 for(String r : restDigits){
                     ans.add(f+r);
                 }
             }
         }
+        cache.put(digits,ans);
         return ans;   
     }
     
