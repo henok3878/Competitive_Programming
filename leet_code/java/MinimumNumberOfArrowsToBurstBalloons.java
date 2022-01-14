@@ -9,7 +9,7 @@ public class MinimumNumberOfArrowsToBurstBalloons {
 
     public int findMinArrowShots(int[][] points) {
         
-        Arrays.sort(points,(a,b)->(a[0]%1000000007) - (b[0]%1000000007));
+        Arrays.sort(points, (a, b) -> Integer.compare(a[0], b[0]));
         Stack<List<Integer>> stack = new Stack();
         for(int i = 0; i < points.length; i++){
             List<Integer> currInterval = new ArrayList(Arrays.asList(points[i][0],points[i][1]));
