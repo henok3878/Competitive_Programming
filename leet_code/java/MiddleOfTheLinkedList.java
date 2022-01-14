@@ -4,23 +4,14 @@ import java.util.Stack;
 
 public class MiddleOfTheLinkedList {
     public ListNode middleNode(ListNode head) {
-        Stack<ListNode> stack = new Stack();
-        ListNode temp = head;
-        while(temp != null){
-            stack.push(temp);
-            temp = temp.next;
-        }
-        int count = 0;
-        int size = stack.size();
-        while(count < size/2){
-            stack.pop(); 
-            count++;
-        }
-        if(size%2 == 0){
-            return stack.pop().next;
-        }
-        return stack.pop();
+        ListNode slowPtr = head;
+        ListNode fastPtr = head;
         
+        while(fastPtr.next != null && fastPtr.next.next != null){
+            slowPtr = slowPtr.next;
+            fastPtr = fastPtr.next.next;
+        }
+        
+        return fastPtr.next == null ? slowPtr : slowPtr.next;
     }
-    
 }
