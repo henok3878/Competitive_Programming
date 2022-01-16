@@ -3,22 +3,18 @@ package leet_code.java;
 public class IntersectionOfTwoLinkedLists {
 
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-       
+        
         ListNode tempA = headA;
         ListNode tempB = headB;
         
-        while(tempA != null){
-           tempB = headB;
-           while(tempB != null){
-               if(tempB ==  tempA){
-                   return tempA;
-               }
-               tempB = tempB.next;
-           }
-           tempA = tempA.next;
+        while(tempA != null || tempB != null){
+            if(tempA == tempB) break;
+            if(tempA == null) tempA = headB;
+            else tempA = tempA.next;
+            if(tempB == null) tempB = headA;
+            else tempB = tempB.next;
         }
-        return null;
-        
+        return tempA;
     }
     
 }
