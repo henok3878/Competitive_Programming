@@ -1,21 +1,24 @@
 package leet_code.java;
 
-import java.util.HashSet;
-import java.util.Set;
-
 public class LinkedListCycleII {
 
     public ListNode detectCycle(ListNode head) {
-        Set<ListNode> visited = new HashSet();
-        ListNode dummyHead = head;
-        while(dummyHead != null){
-            if(visited.contains(dummyHead)){
-                return dummyHead;
+        ListNode slow = head;
+        ListNode fast = head;
+        while(slow != null && fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+            if(slow == fast){
+                slow = head;
+                while(slow != fast){
+                    slow = slow.next;
+                    fast = fast.next;
+                }
+                return slow;
             }
-            visited.add(dummyHead);
-            dummyHead = dummyHead.next;
-        }
-        return null;
-    }
-    
+        } 
+        return null; 
+     }
+
+
 }
