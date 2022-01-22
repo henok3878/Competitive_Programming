@@ -14,10 +14,13 @@ public class LongestRepeatingCharacterReplacement {
             counts[s.charAt(windowEnd) - 'A']++;
             mostFreq = mostFreqElem(counts);
             if(((windowEnd - windowSt + 1) - mostFreq ) > k){
+                // current window is invalid 
                 counts[s.charAt(windowSt) - 'A']--;
                 windowSt++;
+            }else{
+                // current window is valid 
+                max = Math.max((windowEnd- windowSt + 1),max);
             }
-            max = Math.max((windowEnd- windowSt + 1),max);
 
         }
         
