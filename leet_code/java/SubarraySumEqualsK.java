@@ -1,17 +1,17 @@
 package leet_code.java;
 
+import java.util.HashMap;
+
 public class SubarraySumEqualsK {
     public int subarraySum(int[] nums, int k) {
-        int[] sum = new int[nums.length + 1];
-        
-        for(int i = 1; i < sum.length; i++) sum[i] = nums[i-1] + sum[i-1];
-        
-        int ans = 0;
-        
-        for(int i = 0; i < sum.length; i++){
-            for(int j = i + 1; j < sum.length; j++) if(sum[j] - sum[i] == k) ans++;
+        HashMap<Integer,Integer> map = new HashMap(); // sum to freq 
+        map.put(0,1);
+        int sum = 0, ans = 0;
+        for(int num : nums){
+            sum += num;
+            if(map.containsKey(sum - k)) ans += map.get(sum - k);
+            map.put(sum, map.getOrDefault(sum,0) + 1);
         }
-        
         return ans;
     }
 }
