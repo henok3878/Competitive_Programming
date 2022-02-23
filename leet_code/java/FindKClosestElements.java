@@ -16,7 +16,7 @@ public class FindKClosestElements {
             if(Math.abs(arr[right] - x) < Math.abs(arr[left] - x)) left++;
             else right--;
         }
-        List<Integer> ans = new AsrrayList();
+        List<Integer> ans = new ArrayList();
         //O(k)
         for(int i = left; i <= right; i++) ans.add(arr[i]);
         
